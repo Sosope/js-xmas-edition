@@ -49,8 +49,13 @@ function validarFormulario(event) {
         'descripcion-regalo': errorDescripcionRegalo
     }
 
-   const er= manejarErrores(errores);
-   console.log(er)
+    const exito = manejarErrores(errores) === 0;//si no hay error entonces va a haber 0 errores entonces cuando hace 0=== 0 hace que exito sea true
+
+    if (exito) {
+        $form.className = 'oculto';//pongo la class oculto en la etiqueta formulario
+        document.querySelector('#exito').className = '';//saco la class oculto del elemento (div) con id exito
+        window.setTimeout(window.location.href = 'file:///C:/Users/sofia/OneDrive/Escritorio/SOFI/GitHub/js-xmas-edition/wishlist.html',50000 )
+    }
 
     event.preventDefault();
 
@@ -80,7 +85,7 @@ function manejarErrores(errores) {
             $form[key].className = '';
 
         }
-          
+
 
     });
     return cantErrores;
